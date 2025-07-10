@@ -1,3 +1,5 @@
+# Program the filter and extracts the relevant columns, but doesn't decode the data 
+
 import os
 import re
 import pandas as pd
@@ -12,7 +14,7 @@ COLUMNS_TO_EXTRACT = ['DATE', 'cloud_layers', 'weather', 'Smoke',
 output_folder = os.path.join(OUTPUT_BASE, f"{os.path.basename(INPUT_FOLDER)}_extracted")
 os.makedirs(output_folder, exist_ok=True)
 
-# --- Raw Extraction Functions (no legend decoding) ---
+
 
 def getCloudInfo(rem):
     if pd.isna(rem): return None
@@ -30,7 +32,7 @@ def extract_total_cloud_cover(rem):
     if pd.isna(rem) or not rem.startswith("SYN"): return None
     groups = rem.split()
     if len(groups) >= 3:
-        return groups[2][0]  # Raw N code
+        return groups[2][0]  
     return None
 
 def extract_cloud_types(rem):
@@ -47,7 +49,7 @@ def extract_cloud_base_height(rem):
     if pd.isna(rem) or not rem.startswith("SYN"): return None
     groups = rem.split()
     if len(groups) >= 2 and len(groups[1]) >= 3:
-        return groups[1][2]  # h digit only
+        return groups[1][2]  
     return None
 
 def extract_synop_weather(rem):
@@ -73,7 +75,7 @@ def extract_individual_cloud_layers(rem):
     except Exception:
         return None
 
-# --- Processing ---
+
 
 def process_csv_files(input_folder):
     for file in os.listdir(input_folder):
@@ -82,7 +84,7 @@ def process_csv_files(input_folder):
             try:
                 df = pd.read_csv(input_path)
 
-                # Create new raw-extracted columns (no decoding)
+                
                 df['cloud_layers'] = df['REM'].apply(getCloudInfo)
                 df['weather'] = df['MW1'].apply(mw1_raw)
                 df['Smoke'] = df['REM'].apply(detect_smoke)

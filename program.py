@@ -1,3 +1,5 @@
+# Program similar to Extract.py, works on a station name basis 
+
 import os
 import re
 import pandas as pd
@@ -14,6 +16,7 @@ from legends import (
     cloud_height_legend
 )
 
+# MUST CHANGE VALUE BASED ON STATION NUMBER
 STATION_ID = "71877099999"
 
 def download_and_extract_noaa_csv(year, download_folder):

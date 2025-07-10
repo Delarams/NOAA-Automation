@@ -1,11 +1,15 @@
+
+# Program that copies the stations with Sky-Cover-Layer and Sky-Condition-Observation into a
+# new folder called Name_filter 
 import os
 import shutil
 
 
-from Arkansas_filter_stations import stations
+from filter_stations import stations
 
-
+# MUST CHANGE VALUE BASED ON STATE/PROVINCE PATH
 DROPBOX_ROOT = "/Users/delaram/Dropbox/Hawaii_isd_data" 
+# MUST CHANGE VALUE BASED ON STATE/PROVINCE
 DEST_FOLDER = "Hawaii_filter"
 
 

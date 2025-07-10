@@ -1,3 +1,5 @@
+# Program that exracts and decodes the relevant cloud and smoke data from the filtered stations
+
 import os
 import re
 import pandas as pd
@@ -13,7 +15,9 @@ from legends import (
     cloud_height_legend
 )
 
+# MUST CHANGE VALUE BASED ON STATE/PROVINCE
 INPUT_BASE = "Hawaii_filter"
+# MUST CHANGE VALUE BASED ON STATE/PROVINCE
 OUTPUT_BASE = "Hawaii_extracted"
 os.makedirs(OUTPUT_BASE, exist_ok=True)
 
